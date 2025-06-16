@@ -1,0 +1,21 @@
+class Solution:
+    def findMedianSortedArrays(self, nums1, nums2):
+        merged = nums1 + nums2
+        print("After merging:", merged)
+
+        merged.sort()
+        print("After sorting:", merged)
+
+        n = len(merged)
+
+        if n % 2 == 1:
+            median = float(merged[n // 2])
+            print("Odd length, median element at index", n // 2, "=", median)
+            return median
+        else:
+            mid1 = merged[n // 2 - 1]
+            mid2 = merged[n // 2]
+            median = (mid1 + mid2) / 2.0
+
+            print("Even length, middle elements at indices", n // 2 - 1, "and", n // 2, "=", mid1, "and", mid2)
+            return median
