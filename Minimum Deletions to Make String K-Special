@@ -1,0 +1,24 @@
+class Solution:
+    def minimumDeletions(self, word, k):
+        freq = {}
+        for c in word:
+            if c in freq:
+                freq[c] += 1
+            else:
+                freq[c] = 1
+
+        res = len(word) 
+        unique_freqs = set(freq.values())
+
+        for target_freq in unique_freqs:
+            deletions = 0
+
+            for f in freq.values():
+                if f < target_freq:
+                    deletions += f
+                elif f > target_freq + k:
+                    deletions += f - (target_freq + k)
+
+            res = min(res, deletions)
+
+        return res
